@@ -164,8 +164,9 @@
 
     <h3>Business recommendations</h3>
     <ul>
-      <li>Promote furniture bundles for large orders since furniture_decor and size_Large are strongly associated (lift=5.33). The business should offer bundle deals or free delivery for large furniture orders to encourage higher order values, better value per sale.</li>
+      <li>Promote furniture bundles for large orders since furniture_decor and size_Large are strongly associated (lift=5.33). The business should offer bundle deals, installment payment or free delivery for large furniture orders to maximize revenue, encourage higher order values, better value per sale.</li>
       <li>Target bed_bath_table buyers with credit card promotions: Purchases are strongly linked to credit card payments (lift=2.02), partnering with banks to offer cashback can drive more sales.</li>
+      <li>Use support thresholds strategically for campaign design: High-support rules (e.g., common purchase patterns) should guide broad marketing campaigns, while lower-support but high-lift niche patterns can be used for targeted, personalized promotions to specific customer segments.</li>
     </ul>
   </div>
 
@@ -182,8 +183,23 @@
     <h3>Assignment 3 — Segmenting customers and uncovering purchasing patterns</h3>
     <p>Clustering reveals 5 distinct order profiles each requiring a different marketing approach. Association rules further show that relationship between traits of each purchase. Such as furniture_decor strongly co-occurs with large order sizes (lift=5.33) and bed_bath_table purchases are linked to credit card payments (lift=2.02). This allows sales and marketing to strategise targeted bundle promotions and bank partnership deals.</p>
 
+    <h3>Limitations</h3>
+    <ol>
+      <li>Mode imputation for top_product_category (11.56% missing) may inflate the frequency of bed_bath_table, potentially influencing clustering and association results.</li>
+      <li>K-Means assumes spherical clusters and equal variance, which may oversimplify real purchasing behavior.</li>
+      <li>Association rules identify correlation, not causation.</li>
+      <li>Support threshold selection affects rule discovery and business interpretation.</li>
+    </ol>
+
+    <h3>Future Improvements</h3>
+    <ol>
+      <li>Apply silhouette score or Davies&ndash;Bouldin index to further validate optimal k.</li>
+      <li>Experiment with hierarchical clustering to compare segmentation stability.</li>
+      <li>Incorporate customer-level data (e.g., repeat purchases) for deeper behavioural insights.</li>
+    </ol>
+
     <h3>Overall</h3>
-    <p>Assignment 1 cleans and prepares the data. Assignment 2 predicts the individuals behaviour. Assignment 3 helps to discover patterns. Together, these allow business to optimise and make better decisions, increasing revenue and profit, reducing costs.</p>
+    <p>Assignment 1 cleans and prepares the data. Assignment 2 predicts the individuals behaviour. Assignment 3 helps to discover patterns. Together, these three analytical approaches transform raw transactional data into actionable business intelligence — enabling predictive capability, customer segmentation, targeted promotions, logistics optimisation, and ultimately improved revenue and profitability.</p>
   </div>
 
 </body>
