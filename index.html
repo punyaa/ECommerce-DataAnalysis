@@ -37,6 +37,7 @@
     <li><a class="btn" href="IT5100F_Assignment_1.html">Assignment 1 — Data Cleaning &amp; Preprocessing</a></li>
     <li><a class="btn" href="IT5100F_A2_11.html">Assignment 2 — Supervised Learning</a></li>
     <li><a class="btn" href="IT5100F_A3_11.html">Assignment 3 — Unsupervised Learning &amp; Report</a></li>
+    <li><a class="btn" href="https://github.com/chongjinisnotavailableisavailable/it5100f-AY2526-project-Grp11" target="_blank">GitHub Repository</a></li>
   </ul>
 
   <div class="section">
@@ -56,7 +57,7 @@
     <p>Records with zero or negative num_items or order_total_value are logically impossible for a valid transaction and are removed to ensure data quality.</p>
 
     <h3>Sanity Check</h3>
-    <p>These checks enforce 2 rules: an order cannot have more unique products than items, and the total order value must cover item price plus freight. Rows failing these checks likely reflect data entry errors.</p>
+    <p>These checks enforce 2 rules: an order cannot have more unique products than items, and the total order value must cover item price plus freight. Rows failing these checks likely reflect data entry errors, meaning code above is wrong.</p>
 
     <h3>Bar chart observations</h3>
     <ol>
@@ -107,13 +108,13 @@
     <h2>Assignment 3 — Unsupervised Learning</h2>
 
     <h3>Load data</h3>
-    <p>The cleaned and processed dataset from Assignment 1 (46,287 orders, 17 columns) is loaded with engineered features (order_value_per_item, order_size_category).</p>
+    <p>Load the cleaned and processed dataset from Assignment 1 (46,287 orders, 17 columns) is loaded with engineered features (order_value_per_item, order_size_category).</p>
 
     <h3>Further feature engineering</h3>
     <p>These four features capture an order's monetary value, volume, shipping cost proportion, and product variety. Division-by-zero is handled explicitly before computing ratios.</p>
 
     <h3>Stratified sampling for Elbow method testing</h3>
-    <p>orders_analysis_df (30% of all orders) provides a representative random sample to run the Elbow Method (k=3 to 9) without repeatedly fitting K-Means on all 46,287 orders. The full all_orders_df is then used in Task 3 to assign every order a final cluster.</p>
+    <p><code>orders_analysis_df</code> (30% of all orders) provides a representative random sample to run the Elbow Method (k=3 to 9) without repeatedly fitting K-Means on all 46,287 orders. The full <code>all_orders_df</code> is then used in Task 3 to assign every order a final cluster.</p>
 
     <h3>StandardScaler for K-Means to reduce bias</h3>
     <p>StandardScaler is applied before K-Means because the algorithm is distance-based. Without scaling, basket_size (hundreds of dollars) would dominate freight_ratio (0–1 range), producing biased clusters.</p>
@@ -134,7 +135,7 @@
           <li>Cluster 4: basket_size</li>
         </ul>
       </li>
-      <li>basket_size, basket_qty, and freight_ratio reflecting the nature of how consumers shop (single cheap items vs. bulk purchases vs. high-value orders).</li>
+      <li><code>basket_size</code>, <code>basket_qty</code>, and <code>freight_ratio</code> reflecting the nature of how consumers shop (single cheap items vs. bulk purchases vs. high-value orders).</li>
       <li>The heavily skewed cluster sizes (Cluster 0 at 54%) suggest the business should focus mass marketing on everyday buyers, bundle deals for repeat low-variety buyers (Cluster 1), bulk discounts for Cluster 2, shipping incentives for Cluster 3, and premium loyalty programmes for high-value customers (Cluster 4).</li>
     </ol>
 
@@ -160,12 +161,13 @@
       <tr><td>0.01</td><td>138</td></tr>
       <tr><td>0.3</td><td>2</td></tr>
     </table>
-    <p>min_support means showing the patterns that appear at that percentage level. The higher the threshold, the stricter it is. Only 2 rules survived the 30% threshold, as most patterns are too rare to appear in nearly a third of all orders.</p>
+    <p><code>min_support</code> means showing the patterns that appear at <code>min_support</code> percentage level. 0.005, 0.3 means 0.5%, 30% of all orders respectively. The higher the percentage level, the stricter it is as shown in the table. Only 2 rules survived the 30% threshold, as most patterns are too rare to appear in nearly a third of all orders. Depending on the requirements, we can iteratively figure out the top-K common trends by tuning the <code>min_support</code> threshold.</p>
 
     <h3>Business recommendations</h3>
     <ul>
-      <li>Promote furniture bundles for large orders since furniture_decor and size_Large are strongly associated (lift=5.33). The business should offer bundle deals or free delivery for large furniture orders to encourage higher order values.</li>
+      <li>Promote furniture bundles for large orders since furniture_decor and size_Large are strongly associated (lift=5.33). The business should offer bundle deals, installment payment or free delivery for large furniture orders to maximize revenue, encourage higher order values, better value per sale.</li>
       <li>Target bed_bath_table buyers with credit card promotions: Purchases are strongly linked to credit card payments (lift=2.02), partnering with banks to offer cashback can drive more sales.</li>
+      <li>Use support thresholds strategically for campaign design: High-support rules (e.g., common purchase patterns) should guide broad marketing campaigns, while lower-support but high-lift niche patterns can be used for targeted, personalized promotions to specific customer segments.</li>
     </ul>
   </div>
 
@@ -173,16 +175,52 @@
     <h2>Connecting to Business Objectives</h2>
 
     <h3>Assignment 1 — Data quality for reliable decisions</h3>
-    <p>Clean, reliable data is the foundation. By removing invalid records and imputing missing values, the 46,287-order dataset is trustworthy enough to drive business decisions. The bar chart reveals demand is concentrated in a few categories (top 5 = 43.3% of orders), guiding where to focus inventory and marketing. The positive relationship between order size and value supports tiered pricing and bundle strategies.</p>
+    <p>Having clean, reliable data is crucial before we can make any analysis and then business decisions. Removing invalid records and imputing missing values, the 46,287-order dataset aims to achieve that objective.</p>
+    <p>The bar chart reveals demand is concentrated in a few categories (top 5 = 43.3% of orders), this guides business on where to focus their resources; inventory and marketing. The positive relationship between order size and value (box plot) supports tiered pricing and bundle strategies.</p>
 
     <h3>Assignment 2 — Predicting payment behaviour</h3>
-    <p>Predicting payment_type with Random Forest (F1=0.584) enables the business to anticipate how customers will pay before checkout. This supports payment-specific promotions (e.g., credit card cashback, voucher campaigns) and helps optimise payment gateway infrastructure by prioritising the most likely payment methods per customer segment.</p>
+    <p>Predicting <code>payment_type</code> with Random Forest (F1=0.584) enables the business to anticipate how customers will pay before checkout. This supports payment-specific promotions (e.g., credit card cashback, voucher campaigns). Further, this can relate to the underlying payment infrastructure that has to be procured and how the engineers have to design and build the system, min-maxing the tech stack.</p>
 
     <h3>Assignment 3 — Segmenting customers and uncovering purchasing patterns</h3>
-    <p>Clustering reveals 5 distinct order profiles — everyday buyers (Cluster 0, 54%), high-variety buyers (Cluster 1), bulk buyers (Cluster 2), freight-sensitive buyers (Cluster 3), and high-value buyers (Cluster 4) — each requiring a different marketing approach. Association rules further show that furniture_decor strongly co-occurs with large order sizes (lift=5.33) and bed_bath_table purchases are linked to credit card payments (lift=2.02), enabling targeted bundle promotions and bank partnership deals.</p>
+    <p>Clustering reveals 5 distinct order profiles each requiring a different marketing approach. Association rules further show that relationship between traits of each purchase. Such as furniture_decor strongly co-occurs with large order sizes (lift=5.33) and bed_bath_table purchases are linked to credit card payments (lift=2.02). This allows sales and marketing to strategise targeted bundle promotions and bank partnership deals.</p>
+
+    <h3>Limitations</h3>
+    <ol>
+      <li>Mode imputation for top_product_category (11.56% missing) may inflate the frequency of bed_bath_table, potentially influencing clustering and association results.</li>
+      <li>K-Means assumes spherical clusters and equal variance, which may oversimplify real purchasing behavior.</li>
+      <li>Association rules identify correlation, not causation.</li>
+      <li>Support threshold selection affects rule discovery and business interpretation.</li>
+    </ol>
+
+    <h3>Future Improvements</h3>
+    <ol>
+      <li>Apply silhouette score or Davies&ndash;Bouldin index to further validate optimal k.</li>
+      <li>Experiment with hierarchical clustering to compare segmentation stability.</li>
+      <li>Incorporate customer-level data (e.g., repeat purchases) for deeper behavioural insights.</li>
+    </ol>
 
     <h3>Overall</h3>
-    <p>Together, the three assignments form a pipeline: clean data (A1) → predict individual behaviour (A2) → discover group patterns (A3) — giving the business the tools to personalise marketing, optimise logistics, and increase revenue.</p>
+    <p>Assignment 1 cleans and prepares the data. Assignment 2 predicts the individuals behaviour. Assignment 3 helps to discover patterns. Together, these three analytical approaches transform raw transactional data into actionable business intelligence — enabling predictive capability, customer segmentation, targeted promotions, logistics optimisation, and ultimately improved revenue and profitability.</p>
+  </div>
+
+  <div class="section">
+    <h2>Dataset</h2>
+    <p>The cleaned and processed dataset used across all three assignments is available for download below.</p>
+    <ul class="links">
+      <li><a class="btn" href="ecommerce_orders_cleaned_Grp11.csv" download>Download Cleaned Dataset (CSV)</a></li>
+    </ul>
+    <p style="font-size:0.9em;color:#555;">46,287 orders &middot; 17 columns &middot; Engineered features: <code>order_value_per_item</code>, <code>order_size_category</code></p>
+  </div>
+
+  <div class="section">
+    <h2>Contributors</h2>
+    <table border="1" cellpadding="10" cellspacing="0" style="border-collapse:collapse; width:100%;">
+      <tr><th>Name</th><th>Student ID</th><th>Email</th></tr>
+      <tr><td>Chew Chong Jin</td><td>A0155609Y</td><td>E0031746@u.nus.edu</td></tr>
+      <tr><td>Jeganath Yoganandam Pavithr</td><td>A0332196A</td><td>E1583052@u.nus.edu</td></tr>
+      <tr><td>Nicole Yee Jia Le</td><td>A0310145X</td><td>E1442458@u.nus.edu</td></tr>
+      <tr><td>Punyaa</td><td>A0328213M</td><td>E1546968@u.nus.edu</td></tr>
+    </table>
   </div>
 
 </body>
