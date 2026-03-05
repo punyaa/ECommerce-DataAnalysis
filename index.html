@@ -119,44 +119,6 @@
       margin-bottom: 24px;
     }
     
-    .group-members p {
-      margin-bottom: 16px;
-    }
-    
-    .members-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 16px;
-    }
-    
-    .members-table thead {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-    }
-    
-    .members-table th {
-      padding: 14px 16px;
-      text-align: left;
-      font-weight: 600;
-      border: none;
-      font-size: 0.9em;
-    }
-    
-    .members-table td {
-      padding: 12px 16px;
-      border-bottom: 1px solid #eee;
-      color: #555;
-      font-size: 0.9em;
-    }
-    
-    .members-table tbody tr:hover {
-      background-color: #f8f9fa;
-    }
-    
-    .members-table tbody tr:last-child td {
-      border-bottom: none;
-    }
-    
     strong { 
       color: #333;
       font-weight: 600;
@@ -180,45 +142,8 @@
   <div class="header-section">
     <div class="header-content">
       <h1>E-Commerce Orders Analysis</h1>
-      <p class="subtitle">Group 11 • IT5100F • AY2025/26 Project Submission</p>
+      <p class="subtitle">Data preprocessing • Payment prediction • Customer segmentation & patterns</p>
     </div>
-  </div>
-
-  <div class="group-members">
-    <h2>Submitted by</h2>
-    <p><strong>Group number on Canvas:</strong> 11</p>
-    
-    <table class="members-table">
-      <thead>
-        <tr>
-          <th>Student ID</th>
-          <th>NUSNet ID</th>
-          <th>Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>A0328213M</td>
-          <td>E1546968</td>
-          <td>Punyaa</td>
-        </tr>
-        <tr>
-          <td>A0155609Y</td>
-          <td>E0031746</td>
-          <td>Chew Chong Jin</td>
-        </tr>
-        <tr>
-          <td>A0310145X</td>
-          <td>E1442458</td>
-          <td>Nicole Yee Jia Le</td>
-        </tr>
-        <tr>
-          <td>A0332196A</td>
-          <td>E1583052</td>
-          <td>Jeganath Yoganandam Pavithra</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 
   <!-- DISCLAIMER: This page and its write-up were heavily AI-assisted using Claude (Anthropic) -->
@@ -231,14 +156,14 @@
   </div>
 
   <ul class="links">
-    <li><a class="btn" href="IT5100F_Assignment_1.html">Assignment 1 — Data Cleaning &amp; Preprocessing</a></li>
-    <li><a class="btn" href="IT5100F_A2_11.html">Assignment 2 — Supervised Learning</a></li>
-    <li><a class="btn" href="IT5100F_A3_11.html">Assignment 3 — Unsupervised Learning &amp; Report</a></li>
-    <li><a class="btn" href="https://github.com/chongjinisnotavailableisavailable/it5100f-AY2526-project-Grp11" target="_blank">GitHub Repository</a></li>
+    <li><a class="btn" href="Task_1.html">Task 1 — Data Cleaning &amp; Preprocessing</a></li>
+    <li><a class="btn" href="Task_2_11.html">Task 2 — Supervised Learning</a></li>
+    <li><a class="btn" href="Task_3_11.html">Task 3 — Unsupervised Learning &amp; Report</a></li>
+    <li><a class="btn" href="https://github.com/punyaa/ECommerece-DataAnalysis" target="_blank">GitHub Repository</a></li>
   </ul>
 
   <div class="section">
-    <h2>Assignment 1 — Data Cleaning &amp; Preprocessing</h2>
+    <h2>Task 1 — Data Cleaning &amp; Preprocessing</h2>
 
     <h3>Load data</h3>
     <p>The cleaned dataset from Assignment 1 (46,287 orders, 17 columns) is loaded. It contains order-level features including pricing, item counts, product category, payment type, and the engineered features order_value_per_item and order_size_category.</p>
@@ -272,7 +197,7 @@
   </div>
 
   <div class="section">
-    <h2>Assignment 2 — Supervised Learning</h2>
+    <h2>Task 2 — Supervised Learning</h2>
 
     <h3>Test dataset</h3>
     <p>Using a test dataset is crucial for evaluating the true performance of a machine learning model. It provides an unbiased assessment of how well the model generalizes to new, unseen data. Without a separate test set, a model's performance might be overestimated, as it could have simply memorized the training data (overfitting). By holding out a portion of the data for testing, we can gauge the model's ability to predict outcomes on data it has not encountered during training, ensuring its reliability for real-world applications.</p>
@@ -302,7 +227,7 @@
   </div>
 
   <div class="section">
-    <h2>Assignment 3 — Unsupervised Learning</h2>
+    <h2>Task 3 — Unsupervised Learning</h2>
 
     <h3>Load data</h3>
     <p>Load the cleaned and processed dataset from Assignment 1 (46,287 orders, 17 columns) is loaded with engineered features (order_value_per_item, order_size_category).</p>
@@ -371,14 +296,14 @@
   <div class="section">
     <h2>Connecting to Business Objectives</h2>
 
-    <h3>Assignment 1 — Data quality for reliable decisions</h3>
+    <h3>Task 1 — Data quality for reliable decisions</h3>
     <p>Having clean, reliable data is crucial before we can make any analysis and then business decisions. Removing invalid records and imputing missing values, the 46,287-order dataset aims to achieve that objective.</p>
     <p>The bar chart reveals demand is concentrated in a few categories (top 5 = 43.3% of orders), this guides business on where to focus their resources; inventory and marketing. The positive relationship between order size and value (box plot) supports tiered pricing and bundle strategies.</p>
 
-    <h3>Assignment 2 — Predicting payment behaviour</h3>
+    <h3>Task 2 — Predicting payment behaviour</h3>
     <p>Predicting <code>payment_type</code> with Random Forest (F1=0.584) enables the business to anticipate how customers will pay before checkout. This supports payment-specific promotions (e.g., credit card cashback, voucher campaigns). Further, this can relate to the underlying payment infrastructure that has to be procured and how the engineers have to design and build the system, min-maxing the tech stack.</p>
 
-    <h3>Assignment 3 — Segmenting customers and uncovering purchasing patterns</h3>
+    <h3>Task 3 — Segmenting customers and uncovering purchasing patterns</h3>
     <p>Clustering reveals 5 distinct order profiles each requiring a different marketing approach. Association rules further show that relationship between traits of each purchase. Such as furniture_decor strongly co-occurs with large order sizes (lift=5.33) and bed_bath_table purchases are linked to credit card payments (lift=2.02). This allows sales and marketing to strategise targeted bundle promotions and bank partnership deals.</p>
 
     <h3>Limitations</h3>
@@ -397,7 +322,7 @@
     </ol>
 
     <h3>Overall</h3>
-    <p>Assignment 1 cleans and prepares the data. Assignment 2 predicts the individuals behaviour. Assignment 3 helps to discover patterns. Together, these three analytical approaches transform raw transactional data into actionable business intelligence — enabling predictive capability, customer segmentation, targeted promotions, logistics optimisation, and ultimately improved revenue and profitability.</p>
+    <p>Task 1 cleans and prepares the data. Task 2 predicts the individuals behaviour. Task 3 helps to discover patterns. Together, these three analytical approaches transform raw transactional data into actionable business intelligence — enabling predictive capability, customer segmentation, targeted promotions, logistics optimisation, and ultimately improved revenue and profitability.</p>
   </div>
 
   <div class="section">
